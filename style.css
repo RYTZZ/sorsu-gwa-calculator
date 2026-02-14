@@ -349,7 +349,6 @@ body {
 
 .grade-input[type=number],
 .units-input[type=number] {
-    appearance: textfield;
     -moz-appearance: textfield;
 }
 
@@ -548,6 +547,7 @@ body {
     color: var(--maroon-primary);
     letter-spacing: 1.5px;
     margin-bottom: 8px;
+    word-spacing: 0.3em;
 }
 
 .result-title {
@@ -556,7 +556,8 @@ body {
     font-weight: 600;
     color: var(--gray-dark);
     margin-bottom: 30px;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.8px;
+    word-spacing: 0.2em;
 }
 
 .result-details {
@@ -585,6 +586,8 @@ body {
     font-size: 1rem;
     font-weight: 600;
     color: var(--gray-dark);
+    word-spacing: 0.15em;
+    letter-spacing: 0.3px;
 }
 
 .gwa-value {
@@ -672,7 +675,7 @@ body {
 }
 
 .footer-text strong {
-    color: var(--white);
+    color: var(--maroon-light);
     font-weight: 600;
 }
 
