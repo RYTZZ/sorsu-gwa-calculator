@@ -84,15 +84,16 @@ function calculateGWA() {
     
     const semester = document.querySelector('input[name="semester"]:checked').value;
     const status = document.querySelector('input[name="status"]:checked').value;
+    const campus = document.getElementById('campusSelect').value;
     
     const honor = determineHonor(roundedGWA, status, grades);
     
-    displayResult(semester, roundedGWA, honor);
+    displayResult(campus, semester, roundedGWA, honor);
 }
 
 function determineHonor(gwa, status, grades) {
     if (status === 'non-graduating') {
-        const hasLowGrade = grades.some(grade => grade < 2.2);
+        const hasLowGrade = grades.some(grade => grade >= 2.3);
         
         if (hasLowGrade) {
             return 'Disqualified';
@@ -118,7 +119,8 @@ function determineHonor(gwa, status, grades) {
     }
 }
 
-function displayResult(semester, gwa, honor) {
+function displayResult(campus, semester, gwa, honor) {
+    document.getElementById('resultCampus').textContent = campus;
     document.getElementById('resultSemester').textContent = semester;
     document.getElementById('resultGWA').textContent = gwa.toFixed(2);
     document.getElementById('resultHonor').textContent = honor;

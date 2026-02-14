@@ -218,6 +218,35 @@ body {
     }
 }
 
+.campus-select {
+    width: 100%;
+    padding: 14px 18px;
+    border: 2px solid var(--gray-light);
+    border-radius: 10px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.95rem;
+    color: var(--gray-dark);
+    background: var(--white);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    outline: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23800020' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    padding-right: 45px;
+}
+
+.campus-select:focus {
+    border-color: var(--maroon-primary);
+    box-shadow: 0 0 0 3px rgba(128, 0, 32, 0.1);
+}
+
+.campus-select option {
+    padding: 10px;
+    font-family: 'Poppins', sans-serif;
+}
+
 .grades-container {
     display: flex;
     flex-direction: column;
@@ -467,6 +496,7 @@ body {
     font-weight: 600;
     color: var(--gray-dark);
     margin-bottom: 30px;
+    letter-spacing: 0.5px;
 }
 
 .result-details {
@@ -582,7 +612,7 @@ body {
 }
 
 .footer-text strong {
-    color: var(--maroon-light);
+    color: var(--white);
     font-weight: 600;
 }
 
@@ -592,31 +622,156 @@ body {
     font-weight: 300;
 }
 
-@media (max-width: 768px) {
+/* Desktop (Large screens: 1200px and above) */
+@media (min-width: 1200px) {
+    .container {
+        max-width: 900px;
+    }
+
+    .header {
+        padding: 50px 40px;
+    }
+
+    .logo {
+        width: 120px;
+        height: 120px;
+    }
+
+    .university-name {
+        font-size: 2rem;
+    }
+
+    .page-title {
+        font-size: 1.3rem;
+    }
+
+    .main-content {
+        padding: 50px;
+    }
+
+    .result-card {
+        padding: 50px 40px;
+    }
+
+    .result-logo {
+        width: 100px;
+        height: 100px;
+    }
+
+    .result-university {
+        font-size: 1.6rem;
+    }
+
+    .result-title {
+        font-size: 1.2rem;
+    }
+}
+
+/* Laptop (992px - 1199px) */
+@media (min-width: 992px) and (max-width: 1199px) {
+    .container {
+        max-width: 850px;
+    }
+
+    .header {
+        padding: 45px 35px;
+    }
+
+    .logo {
+        width: 110px;
+        height: 110px;
+    }
+
+    .university-name {
+        font-size: 1.9rem;
+    }
+
+    .page-title {
+        font-size: 1.25rem;
+    }
+
+    .main-content {
+        padding: 45px;
+    }
+}
+
+/* Tablet (768px - 991px) */
+@media (min-width: 768px) and (max-width: 991px) {
+    .container {
+        max-width: 720px;
+    }
+
+    .header {
+        padding: 40px 30px;
+    }
+
+    .logo {
+        width: 100px;
+        height: 100px;
+    }
+
+    .university-name {
+        font-size: 1.8rem;
+        letter-spacing: 1.5px;
+    }
+
+    .page-title {
+        font-size: 1.2rem;
+    }
+
+    .main-content {
+        padding: 40px 35px;
+    }
+
+    .radio-group {
+        gap: 25px;
+    }
+
+    .result-university {
+        font-size: 1.4rem;
+    }
+
+    .result-title {
+        font-size: 1.1rem;
+    }
+
+    .honor-badge {
+        font-size: 1.25rem;
+    }
+}
+
+/* Mobile Large (481px - 767px) */
+@media (min-width: 481px) and (max-width: 767px) {
     body {
         padding: 15px;
     }
 
+    .container {
+        max-width: 100%;
+    }
+
     .header {
-        padding: 30px 20px;
+        padding: 35px 25px;
+        border-radius: 16px;
     }
 
     .logo {
-        width: 80px;
-        height: 80px;
+        width: 90px;
+        height: 90px;
     }
 
     .university-name {
-        font-size: 1.3rem;
-        letter-spacing: 1px;
+        font-size: 1.5rem;
+        letter-spacing: 1.2px;
     }
 
     .page-title {
-        font-size: 1rem;
+        font-size: 1.05rem;
     }
 
     .main-content {
-        padding: 25px 20px;
+        padding: 30px 25px;
+        border-radius: 14px;
     }
 
     .radio-group {
@@ -624,44 +779,230 @@ body {
         gap: 15px;
     }
 
+    .result-card {
+        padding: 35px 25px;
+    }
+
+    .result-logo {
+        width: 75px;
+        height: 75px;
+    }
+
     .result-university {
-        font-size: 1.1rem;
+        font-size: 1.3rem;
+        letter-spacing: 1.2px;
     }
 
     .result-title {
-        font-size: 0.95rem;
+        font-size: 1rem;
+        letter-spacing: 0.3px;
     }
 
     .result-row {
         flex-direction: column;
         gap: 8px;
         text-align: center;
+        padding: 14px 18px;
     }
 
     .honor-badge {
-        font-size: 1.1rem;
+        font-size: 1.15rem;
         padding: 14px 20px;
+    }
+
+    .footer {
+        padding: 25px;
     }
 }
 
+/* Mobile Small (320px - 480px) */
 @media (max-width: 480px) {
+    body {
+        padding: 12px;
+    }
+
+    .container {
+        max-width: 100%;
+    }
+
+    .header {
+        padding: 25px 18px;
+        border-radius: 14px;
+        margin-bottom: 25px;
+    }
+
+    .logo {
+        width: 75px;
+        height: 75px;
+    }
+
     .university-name {
         font-size: 1.1rem;
+        letter-spacing: 0.8px;
     }
 
     .page-title {
         font-size: 0.9rem;
+        letter-spacing: 0.5px;
     }
 
     .main-content {
         padding: 20px 15px;
+        border-radius: 12px;
+        margin-bottom: 20px;
+    }
+
+    .input-section {
+        gap: 25px;
+    }
+
+    .form-label {
+        font-size: 0.95rem;
+    }
+
+    .radio-group {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .radio-label {
+        font-size: 0.9rem;
+    }
+
+    .grade-input {
+        padding: 12px 15px;
+        font-size: 0.9rem;
+    }
+
+    .remove-btn {
+        width: 38px;
+        height: 38px;
+        font-size: 1.3rem;
+    }
+
+    .add-subject-btn {
+        padding: 11px 20px;
+        font-size: 0.9rem;
+    }
+
+    .subject-counter {
+        font-size: 0.8rem;
+    }
+
+    .calculate-btn {
+        padding: 14px 32px;
+        font-size: 1rem;
     }
 
     .modal-content {
-        padding: 20px;
+        padding: 18px;
+        width: 95%;
+        border-radius: 16px;
+    }
+
+    .close-modal-btn {
+        width: 32px;
+        height: 32px;
+        font-size: 1.3rem;
+        top: 12px;
+        right: 12px;
     }
 
     .result-card {
-        padding: 30px 20px;
+        padding: 25px 18px;
+        border-radius: 14px;
+    }
+
+    .result-logo {
+        width: 70px;
+        height: 70px;
+    }
+
+    .result-university {
+        font-size: 1.05rem;
+        letter-spacing: 1px;
+        margin-bottom: 6px;
+    }
+
+    .result-title {
+        font-size: 0.9rem;
+        letter-spacing: 0.3px;
+        margin-bottom: 25px;
+    }
+
+    .result-details {
+        gap: 16px;
+    }
+
+    .result-row {
+        flex-direction: column;
+        gap: 6px;
+        text-align: center;
+        padding: 12px 15px;
+    }
+
+    .result-label {
+        font-size: 0.85rem;
+    }
+
+    .result-value {
+        font-size: 0.95rem;
+    }
+
+    .gwa-value {
+        font-size: 1.2rem;
+    }
+
+    .result-honor {
+        padding: 16px;
+    }
+
+    .honor-badge {
+        font-size: 1rem;
+        padding: 12px 18px;
+        letter-spacing: 0.8px;
+    }
+
+    .download-btn {
+        padding: 12px 28px;
+        font-size: 0.9rem;
+        margin-top: 20px;
+    }
+
+    .footer {
+        padding: 20px;
+        border-radius: 12px;
+    }
+
+    .footer-text {
+        font-size: 0.85rem;
+    }
+
+    .footer-subtitle {
+        font-size: 0.75rem;
+    }
+}
+
+/* Extra Small Mobile (below 360px) */
+@media (max-width: 359px) {
+    .university-name {
+        font-size: 0.95rem;
+    }
+
+    .page-title {
+        font-size: 0.8rem;
+    }
+
+    .result-university {
+        font-size: 0.95rem;
+    }
+
+    .result-title {
+        font-size: 0.85rem;
+    }
+
+    .honor-badge {
+        font-size: 0.9rem;
+        padding: 10px 15px;
     }
 }

@@ -55,6 +55,16 @@
                 </div>
 
                 <div class="form-group">
+                    <label class="form-label">Campus</label>
+                    <select class="campus-select" id="campusSelect">
+                        <option value="BULAN CAMPUS">Bulan Campus</option>
+                        <option value="CASTILLA CAMPUS">Castilla Campus</option>
+                        <option value="MAGALLANES CAMPUS">Magallanes Campus</option>
+                        <option value="SORSOGON CITY CAMPUS">Sorsogon City Campus</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
                     <label class="form-label">Subject Grades</label>
                     <div class="grades-container" id="gradesContainer">
                         <div class="grade-input-wrapper">
@@ -82,6 +92,10 @@
                     <h4 class="result-title">Academic Evaluation Result</h4>
                     <div class="result-details">
                         <div class="result-row">
+                            <span class="result-label">Campus:</span>
+                            <span class="result-value" id="resultCampus"></span>
+                        </div>
+                        <div class="result-row">
                             <span class="result-label">Semester:</span>
                             <span class="result-value" id="resultSemester"></span>
                         </div>
@@ -99,7 +113,7 @@
         </div>
 
         <footer class="footer">
-            <p class="footer-text">Developed by <strong>kazeeee</strong></p>
+            <p class="footer-text">Developed by <strong>kazeee</strong></p>
             <p class="footer-subtitle">Frontend Website Developer</p>
         </footer>
     </div>
