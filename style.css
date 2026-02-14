@@ -587,6 +587,10 @@ body {
     color: var(--gray-dark);
 }
 
+.result-value.campus-text {
+    text-transform: uppercase;
+}
+
 .gwa-value {
     font-size: 1.3rem;
     color: var(--maroon-primary);
@@ -672,7 +676,7 @@ body {
 }
 
 .footer-text strong {
-    color: var(--white);
+    color: var(--maroon-light);
     font-weight: 600;
 }
 
