@@ -672,7 +672,7 @@ body {
 }
 
 .footer-text strong {
-    color: var(--maroon-light);
+    color: var(--white);
     font-weight: 600;
 }
 
