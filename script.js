@@ -13,7 +13,8 @@ function addSubject() {
     gradeWrapper.className = 'grade-input-wrapper';
     
     gradeWrapper.innerHTML = `
-        <input type="number" class="grade-input" placeholder="Enter grade (1.00 - 5.00)" min="1.00" max="5.00" step="0.01">
+        <input type="number" class="grade-input" placeholder="Grade (1.00 - 5.00)" min="1.00" max="5.00" step="0.01">
+        <input type="number" class="units-input" placeholder="Units" min="0.5" max="10" step="0.5">
         <button class="remove-btn" onclick="removeGrade(this)">×</button>
     `;
     
@@ -50,52 +51,78 @@ function updateUI() {
 }
 
 function calculateGWA() {
-    const gradeInputs = document.querySelectorAll('.grade-input');
-    const grades = [];
+    const gradeWrappers = document.querySelectorAll('.grade-input-wrapper');
+    const subjects = [];
     let hasError = false;
     
-    gradeInputs.forEach((input, index) => {
-        const value = parseFloat(input.value);
+    gradeWrappers.forEach((wrapper) => {
+        const gradeInput = wrapper.querySelector('.grade-input');
+        const unitsInput = wrapper.querySelector('.units-input');
         
-        if (!input.value || isNaN(value)) {
-            input.style.borderColor = 'var(--maroon-primary)';
+        const grade = parseFloat(gradeInput.value);
+        const units = parseFloat(unitsInput.value);
+        
+        if (!gradeInput.value || isNaN(grade)) {
+            gradeInput.style.borderColor = 'var(--maroon-primary)';
             hasError = true;
             setTimeout(() => {
-                input.style.borderColor = '';
+                gradeInput.style.borderColor = '';
             }, 2000);
-        } else if (value < 1.00 || value > 5.00) {
-            input.style.borderColor = 'var(--maroon-primary)';
+        } else if (grade < 1.00 || grade > 5.00) {
+            gradeInput.style.borderColor = 'var(--maroon-primary)';
             hasError = true;
             setTimeout(() => {
-                input.style.borderColor = '';
+                gradeInput.style.borderColor = '';
             }, 2000);
-        } else {
-            grades.push(value);
+        }
+        
+        if (!unitsInput.value || isNaN(units)) {
+            unitsInput.style.borderColor = 'var(--maroon-primary)';
+            hasError = true;
+            setTimeout(() => {
+                unitsInput.style.borderColor = '';
+            }, 2000);
+        } else if (units < 0.5 || units > 10) {
+            unitsInput.style.borderColor = 'var(--maroon-primary)';
+            hasError = true;
+            setTimeout(() => {
+                unitsInput.style.borderColor = '';
+            }, 2000);
+        }
+        
+        if (!hasError && !isNaN(grade) && !isNaN(units)) {
+            subjects.push({ grade, units });
         }
     });
     
-    if (hasError || grades.length === 0) {
-        alert('Please enter valid grades for all subjects (1.00 - 5.00)');
+    if (hasError || subjects.length === 0) {
+        alert('Please enter valid grades (1.00 - 5.00) and units for all subjects');
         return;
     }
     
-    const gwa = grades.reduce((sum, grade) => sum + grade, 0) / grades.length;
-    const roundedGWA = Math.round(gwa * 100) / 100;
+    const totalWeightedGrades = subjects.reduce((sum, subject) => sum + (subject.grade * subject.units), 0);
+    const totalUnits = subjects.reduce((sum, subject) => sum + subject.units, 0);
+    
+    const gwa = totalWeightedGrades / totalUnits;
+    
+    const gwaForHonors = Math.round(gwa * 10000) / 10000;
+    const gwaDisplay = Math.floor(gwa * 1000) / 1000;
     
     const semester = document.querySelector('input[name="semester"]:checked').value;
     const status = document.querySelector('input[name="status"]:checked').value;
     const campus = document.getElementById('campusSelect').value;
     
-    const honor = determineHonor(roundedGWA, status, grades);
+    const grades = subjects.map(s => s.grade);
+    const honor = determineHonor(gwaForHonors, status, grades);
     
-    displayResult(campus, semester, roundedGWA, honor);
+    displayResult(campus, semester, gwaDisplay, honor);
 }
 
 function determineHonor(gwa, status, grades) {
     if (status === 'non-graduating') {
-        const hasLowGrade = grades.some(grade => grade >= 2.3);
+        const hasDisqualifyingGrade = grades.some(grade => grade > 2.2);
         
-        if (hasLowGrade) {
+        if (hasDisqualifyingGrade) {
             return 'Disqualified';
         }
         
@@ -107,6 +134,12 @@ function determineHonor(gwa, status, grades) {
             return 'No Academic Honor';
         }
     } else {
+        const hasDisqualifyingGrade = grades.some(grade => grade > 2.2);
+        
+        if (hasDisqualifyingGrade) {
+            return 'No Latin Honor';
+        }
+        
         if (gwa >= 1.00 && gwa <= 1.20) {
             return 'Summa Cum Laude';
         } else if (gwa >= 1.21 && gwa <= 1.50) {
@@ -122,7 +155,7 @@ function determineHonor(gwa, status, grades) {
 function displayResult(campus, semester, gwa, honor) {
     document.getElementById('resultCampus').textContent = campus;
     document.getElementById('resultSemester').textContent = semester;
-    document.getElementById('resultGWA').textContent = gwa.toFixed(2);
+    document.getElementById('resultGWA').textContent = gwa.toFixed(3);
     document.getElementById('resultHonor').textContent = honor;
     
     const modal = document.getElementById('resultModal');

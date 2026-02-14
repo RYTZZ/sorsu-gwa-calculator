@@ -43,6 +43,38 @@ body {
     }
 }
 
+.navbar {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    background: var(--white);
+    padding: 15px 30px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 12px var(--shadow);
+}
+
+.nav-link {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--gray-medium);
+    text-decoration: none;
+    padding: 10px 24px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+    color: var(--maroon-primary);
+    background: rgba(128, 0, 32, 0.05);
+}
+
+.nav-link.active {
+    color: var(--white);
+    background: linear-gradient(135deg, var(--maroon-primary) 0%, var(--maroon-dark) 100%);
+}
+
 .header {
     background: linear-gradient(135deg, var(--maroon-primary) 0%, var(--maroon-dark) 100%);
     padding: 40px 30px;
@@ -272,6 +304,18 @@ body {
 }
 
 .grade-input {
+    flex: 2;
+    padding: 14px 18px;
+    border: 2px solid var(--gray-light);
+    border-radius: 10px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.95rem;
+    color: var(--gray-dark);
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+.units-input {
     flex: 1;
     padding: 14px 18px;
     border: 2px solid var(--gray-light);
@@ -283,14 +327,30 @@ body {
     outline: none;
 }
 
-.grade-input:focus {
+.grade-input:focus,
+.units-input:focus {
     border-color: var(--maroon-primary);
     box-shadow: 0 0 0 3px rgba(128, 0, 32, 0.1);
 }
 
-.grade-input::placeholder {
+.grade-input::placeholder,
+.units-input::placeholder {
     color: var(--gray-medium);
     opacity: 0.6;
+}
+
+.grade-input::-webkit-inner-spin-button,
+.grade-input::-webkit-outer-spin-button,
+.units-input::-webkit-inner-spin-button,
+.units-input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.grade-input[type=number],
+.units-input[type=number] {
+    appearance: textfield;
+    -moz-appearance: textfield;
 }
 
 .remove-btn {
@@ -620,6 +680,132 @@ body {
     font-size: 0.85rem;
     color: rgba(255, 255, 255, 0.8);
     font-weight: 300;
+}
+
+.footer-subtitle {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 300;
+}
+
+.grading-section {
+    margin-bottom: 40px;
+}
+
+.section-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--maroon-primary);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px var(--shadow);
+}
+
+.grading-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--white);
+}
+
+.grading-table thead {
+    background: linear-gradient(135deg, var(--maroon-primary) 0%, var(--maroon-dark) 100%);
+}
+
+.grading-table thead th {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--white);
+    padding: 16px 20px;
+    text-align: left;
+    letter-spacing: 0.5px;
+}
+
+.grading-table tbody tr {
+    border-bottom: 1px solid var(--gray-light);
+    transition: background 0.3s ease;
+}
+
+.grading-table tbody tr:hover {
+    background: rgba(128, 0, 32, 0.03);
+}
+
+.grading-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.grading-table tbody td {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9rem;
+    color: var(--gray-dark);
+    padding: 14px 20px;
+}
+
+.grading-table tbody td:first-child {
+    font-weight: 600;
+    color: var(--maroon-primary);
+}
+
+.honors-section {
+    margin-top: 40px;
+}
+
+.honors-category {
+    background: var(--white);
+    padding: 25px 30px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 12px var(--shadow);
+    border-left: 4px solid var(--maroon-primary);
+}
+
+.category-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--maroon-primary);
+    margin-bottom: 15px;
+}
+
+.honors-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.honors-list li {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.95rem;
+    color: var(--gray-dark);
+    padding: 8px 0;
+    line-height: 1.6;
+}
+
+.honors-list li strong {
+    color: var(--maroon-dark);
+    font-weight: 600;
+}
+
+.honors-list li.note {
+    color: var(--gray-medium);
+    font-style: italic;
+    font-size: 0.9rem;
+    margin-top: 10px;
+}
+
+.reference-note {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9rem;
+    color: var(--gray-medium);
+    text-align: center;
+    margin-top: 30px;
+    font-style: italic;
 }
 
 /* Desktop (Large screens: 1200px and above) */
