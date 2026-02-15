@@ -56,7 +56,7 @@ body {
 
 .nav-link {
     font-family: 'Poppins', sans-serif;
-    font-size: 0.95rem;
+    font-size: 0.85rem;
     font-weight: 500;
     color: var(--gray-medium);
     text-decoration: none;
@@ -135,7 +135,7 @@ body {
 
 .university-name {
     font-family: 'Montserrat', sans-serif;
-    font-size: 1.8rem;
+    font-size: 1rem;
     font-weight: 800;
     color: var(--white);
     letter-spacing: 2px;
@@ -197,7 +197,7 @@ body {
     align-items: center;
     gap: 10px;
     cursor: pointer;
-    font-size: 0.95rem;
+    font-size: 0.85rem;
     color: var(--gray-medium);
     transition: color 0.3s ease;
     user-select: none;
@@ -256,7 +256,7 @@ body {
     border: 2px solid var(--gray-light);
     border-radius: 10px;
     font-family: 'Poppins', sans-serif;
-    font-size: 0.95rem;
+    font-size: 0.85rem;
     color: var(--gray-dark);
     background: var(--white);
     cursor: pointer;
@@ -309,7 +309,7 @@ body {
     border: 2px solid var(--gray-light);
     border-radius: 10px;
     font-family: 'Poppins', sans-serif;
-    font-size: 0.95rem;
+    font-size: 0.85rem;
     color: var(--gray-dark);
     transition: all 0.3s ease;
     outline: none;
@@ -321,7 +321,7 @@ body {
     border: 2px solid var(--gray-light);
     border-radius: 10px;
     font-family: 'Poppins', sans-serif;
-    font-size: 0.95rem;
+    font-size: 0.85rem;
     color: var(--gray-dark);
     transition: all 0.3s ease;
     outline: none;
@@ -360,7 +360,7 @@ body {
     background: var(--gray-light);
     color: var(--gray-medium);
     border-radius: 8px;
-    font-size: 1.5rem;
+    font-size: 1rem;
     cursor: pointer;
     transition: all 0.3s ease;
     display: flex;
@@ -387,7 +387,7 @@ body {
     color: var(--maroon-primary);
     border-radius: 10px;
     font-family: 'Poppins', sans-serif;
-    font-size: 0.95rem;
+    font-size: 0.85rem;
     font-weight: 500;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -412,6 +412,17 @@ body {
     margin-top: -10px;
 }
 
+.nstp-note {
+    font-size: 0.85rem;
+    color: var(--maroon-primary);
+    font-style: italic;
+    margin-top: 10px;
+    padding: 10px 15px;
+    background: rgba(128, 0, 32, 0.05);
+    border-left: 3px solid var(--maroon-primary);
+    border-radius: 4px;
+}
+
 .calculate-btn {
     padding: 16px 40px;
     border: none;
@@ -419,7 +430,7 @@ body {
     color: var(--white);
     border-radius: 12px;
     font-family: 'Montserrat', sans-serif;
-    font-size: 1.05rem;
+    font-size: 0.9rem;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -506,7 +517,7 @@ body {
     background: var(--gray-light);
     color: var(--gray-dark);
     border-radius: 50%;
-    font-size: 1.5rem;
+    font-size: 1rem;
     cursor: pointer;
     transition: all 0.3s ease;
     display: flex;
@@ -529,6 +540,9 @@ body {
     padding: 40px 30px;
     text-align: center;
     box-shadow: 0 8px 30px var(--shadow);
+    width: 600px;
+    max-width: 100%;
+    margin: 0 auto;
 }
 
 .result-logo-container {
@@ -543,10 +557,10 @@ body {
 
 .result-university {
     font-family: 'Montserrat', sans-serif;
-    font-size: 1.4rem;
+    font-size: 1rem;
     font-weight: 800;
     color: var(--maroon-primary);
-    letter-spacing: 1.5px;
+    letter-spacing: 1px;
     margin-bottom: 8px;
 }
 
@@ -565,18 +579,16 @@ body {
     gap: 20px;
 }
 
-.result-row {
+.result-item {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
-    padding: 12px 20px;
-    background: var(--white);
-    border-radius: 10px;
-    box-shadow: 0 2px 8px var(--shadow);
+    text-align: center;
+    gap: 8px;
 }
 
 .result-label {
-    font-size: 0.95rem;
+    font-size: 0.85rem;
     font-weight: 500;
     color: var(--gray-medium);
 }
@@ -585,10 +597,6 @@ body {
     font-size: 1rem;
     font-weight: 600;
     color: var(--gray-dark);
-}
-
-.result-value.campus-text {
-    text-transform: uppercase;
 }
 
 .gwa-value {
@@ -636,7 +644,7 @@ body {
     color: var(--white);
     border-radius: 10px;
     font-family: 'Poppins', sans-serif;
-    font-size: 0.95rem;
+    font-size: 0.85rem;
     font-weight: 500;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -651,12 +659,14 @@ body {
 
 .footer {
     background: linear-gradient(135deg, var(--gray-dark) 0%, var(--gray-medium) 100%);
-    padding: 30px;
+    padding: 20px 30px;
     border-radius: 16px;
     text-align: center;
     box-shadow: 0 8px 30px var(--shadow);
     position: relative;
     overflow: hidden;
+    max-width: 900px;
+    margin: 0 auto;
 }
 
 .footer::before {
@@ -670,13 +680,13 @@ body {
 }
 
 .footer-text {
-    font-size: 0.95rem;
+    font-size: 0.85rem;
     color: var(--white);
-    margin-bottom: 6px;
+    margin-bottom: 4px;
 }
 
 .footer-text strong {
-    color: var(--maroon-light);
+    color: var(--white);
     font-weight: 600;
 }
 
@@ -692,13 +702,25 @@ body {
     font-weight: 300;
 }
 
+.footer-link {
+    color: var(--white);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+
+.footer-link:hover {
+    color: var(--maroon-light);
+    text-decoration: underline;
+}
+
 .grading-section {
     margin-bottom: 40px;
 }
 
 .section-title {
     font-family: 'Montserrat', sans-serif;
-    font-size: 1.5rem;
+    font-size: 1rem;
     font-weight: 700;
     color: var(--maroon-primary);
     margin-bottom: 20px;
@@ -723,7 +745,7 @@ body {
 
 .grading-table thead th {
     font-family: 'Montserrat', sans-serif;
-    font-size: 0.95rem;
+    font-size: 0.85rem;
     font-weight: 600;
     color: var(--white);
     padding: 16px 20px;
@@ -785,7 +807,7 @@ body {
 
 .honors-list li {
     font-family: 'Poppins', sans-serif;
-    font-size: 0.95rem;
+    font-size: 0.85rem;
     color: var(--gray-dark);
     padding: 8px 0;
     line-height: 1.6;
@@ -828,7 +850,7 @@ body {
     }
 
     .university-name {
-        font-size: 2rem;
+        font-size: 1.8rem;
     }
 
     .page-title {
@@ -849,7 +871,7 @@ body {
     }
 
     .result-university {
-        font-size: 1.6rem;
+        font-size: 1.3rem;
     }
 
     .result-title {
@@ -873,7 +895,7 @@ body {
     }
 
     .university-name {
-        font-size: 1.9rem;
+        font-size: 1rem;
     }
 
     .page-title {
@@ -901,7 +923,7 @@ body {
     }
 
     .university-name {
-        font-size: 1.8rem;
+        font-size: 1rem;
         letter-spacing: 1.5px;
     }
 
@@ -918,7 +940,7 @@ body {
     }
 
     .result-university {
-        font-size: 1.4rem;
+        font-size: 1rem;
     }
 
     .result-title {
@@ -951,12 +973,12 @@ body {
     }
 
     .university-name {
-        font-size: 1.5rem;
+        font-size: 1rem;
         letter-spacing: 1.2px;
     }
 
     .page-title {
-        font-size: 1.05rem;
+        font-size: 0.9rem;
     }
 
     .main-content {
@@ -979,7 +1001,7 @@ body {
     }
 
     .result-university {
-        font-size: 1.3rem;
+        font-size: 1rem;
         letter-spacing: 1.2px;
     }
 
@@ -1047,7 +1069,7 @@ body {
     }
 
     .form-label {
-        font-size: 0.95rem;
+        font-size: 0.85rem;
     }
 
     .radio-group {
@@ -1109,7 +1131,7 @@ body {
     }
 
     .result-university {
-        font-size: 1.05rem;
+        font-size: 0.9rem;
         letter-spacing: 1px;
         margin-bottom: 6px;
     }
@@ -1136,7 +1158,7 @@ body {
     }
 
     .result-value {
-        font-size: 0.95rem;
+        font-size: 0.85rem;
     }
 
     .gwa-value {
@@ -1176,7 +1198,7 @@ body {
 /* Extra Small Mobile (below 360px) */
 @media (max-width: 359px) {
     .university-name {
-        font-size: 0.95rem;
+        font-size: 0.85rem;
     }
 
     .page-title {
@@ -1184,7 +1206,7 @@ body {
     }
 
     .result-university {
-        font-size: 0.95rem;
+        font-size: 0.85rem;
     }
 
     .result-title {

@@ -62,10 +62,10 @@
                 <div class="form-group">
                     <label class="form-label">Campus</label>
                     <select class="campus-select" id="campusSelect">
-                        <option value="Bulan Campus">Bulan Campus</option>
-                        <option value="Castilla Campus">Castilla Campus</option>
-                        <option value="Magallanes Campus">Magallanes Campus</option>
-                        <option value="Sorsogon City Campus">Sorsogon City Campus</option>
+                        <option value="BULAN CAMPUS">Bulan Campus</option>
+                        <option value="CASTILLA CAMPUS">Castilla Campus</option>
+                        <option value="MAGALLANES CAMPUS">Magallanes Campus</option>
+                        <option value="SORSOGON CITY CAMPUS">Sorsogon City Campus</option>
                     </select>
                 </div>
 
@@ -80,6 +80,7 @@
                     </div>
                     <button class="add-subject-btn" id="addSubjectBtn" onclick="addSubject()">+ Add Subject</button>
                     <p class="subject-counter" id="subjectCounter">1 of 8 subjects</p>
+                    <p class="nstp-note">Note: NSTP subjects are not included in GWA calculation</p>
                 </div>
 
                 <button class="calculate-btn" onclick="calculateGWA()">Calculate GWA</button>
@@ -97,16 +98,16 @@
                     <h3 class="result-university">SORSOGON STATE UNIVERSITY</h3>
                     <h4 class="result-title">Academic Evaluation Result</h4>
                     <div class="result-details">
-                        <div class="result-row">
-                            <span class="result-label">Campus:</span>
-                            <span class="result-value campus-text" id="resultCampus"></span>
+                        <div class="result-item">
+                            <span class="result-label">Campus</span>
+                            <span class="result-value" id="resultCampus"></span>
                         </div>
-                        <div class="result-row">
-                            <span class="result-label">Semester:</span>
+                        <div class="result-item">
+                            <span class="result-label">Semester</span>
                             <span class="result-value" id="resultSemester"></span>
                         </div>
-                        <div class="result-row">
-                            <span class="result-label">General Weighted Average:</span>
+                        <div class="result-item">
+                            <span class="result-label">General Weighted Average</span>
                             <span class="result-value gwa-value" id="resultGWA"></span>
                         </div>
                         <div class="result-honor">
@@ -119,11 +120,11 @@
         </div>
 
         <footer class="footer">
-            <p class="footer-text">Developed by <strong>kazeee</strong></p>
+            <p class="footer-text">Developed by <a href="https://www.instagram.com/kazee_1029/" target="_blank" rel="noopener noreferrer" class="footer-link"><strong>IG: kazee_1029</strong></a></p>
             <p class="footer-subtitle">Frontend Website Developer</p>
         </footer>
     </div>
 
     <script src="script.js"></script>
 </body>
-</html>
+</html>v
