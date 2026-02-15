@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SorSU GWA Goal Planner</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar">
+            <a href="index.html" class="nav-link">Calculator</a>
+            <a href="goal-planner.html" class="nav-link active">Goal Planner</a>
+            <a href="grading.html" class="nav-link">Grading</a>
+        </nav>
+
+        <header class="header">
+            <h1 class="university-name">SORSOGON STATE UNIVERSITY</h1>
+            <h2 class="page-title">GWA Goal Planner</h2>
+        </header>
+
+        <main class="main-content">
+            <div class="input-section">
+                <h3 class="section-heading">Set Your Goal</h3>
+                <p class="section-description">Plan your academic journey and calculate what GWA you need to achieve your target honor.</p>
+
+                <div class="calculation-formula">
+                    <h4 class="formula-title">Calculation Formula:</h4>
+                    <p class="formula-text">(Target × Total Units − Current × Completed Units) ÷ Remaining Units</p>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Current GWA</label>
+                    <input type="number" class="goal-input" id="currentGWA" placeholder="e.g., 1.75" min="1.00" max="5.00" step="0.01">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Units Completed</label>
+                    <input type="number" class="goal-input" id="unitsCompleted" placeholder="e.g., 45" min="0" step="0.5">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Units Remaining</label>
+                    <input type="number" class="goal-input" id="unitsRemaining" placeholder="e.g., 75" min="0" step="0.5">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Select Target Honor</label>
+                    <select class="goal-select" id="targetHonor">
+                        <option value="">-- Choose your goal --</option>
+                        <option value="1.50">President's Lister (1.00 - 1.50)</option>
+                        <option value="1.75">Dean's Lister (1.51 - 1.75)</option>
+                        <option value="1.20">Summa Cum Laude (1.00 - 1.20)</option>
+                        <option value="1.50">Magna Cum Laude (1.21 - 1.50)</option>
+                        <option value="1.75">Cum Laude (1.51 - 1.75)</option>
+                    </select>
+                </div>
+
+                <button class="calculate-btn" onclick="calculateRequiredGWA()">Calculate Required GWA</button>
+            </div>
+
+            <div class="result-section" id="goalResult" style="display: none;">
+                <div class="goal-result-card">
+                    <h3 class="result-heading">Your Goal Plan</h3>
+                    <div class="goal-details">
+                        <div class="goal-row">
+                            <span class="goal-label">Target Honor:</span>
+                            <span class="goal-value" id="resultTarget"></span>
+                        </div>
+                        <div class="goal-row">
+                            <span class="goal-label">Total Units:</span>
+                            <span class="goal-value" id="resultTotalUnits"></span>
+                        </div>
+                        <div class="goal-row highlight-row">
+                            <span class="goal-label">Required GWA:</span>
+                            <span class="goal-value required-gwa" id="resultRequiredGWA"></span>
+                        </div>
+                    </div>
+                    <div class="goal-status" id="goalStatus"></div>
+                    <p class="goal-message" id="goalMessage"></p>
+                </div>
+            </div>
+
+            <div class="important-notes">
+                <h4 class="notes-title">⚠️ Important Notes</h4>
+                <ul class="notes-list">
+                    <li>No <strong>President's/Dean's Lister</strong> if you have any subject grade ≥ 2.3.</li>
+                    <li><strong>NSTP</strong> are not included on GWA calculation.</li>
+                    <li>No <strong>Latin Honors</strong> if you have any failing/conditional grade (3.1–5.0).</li>
+                    <li>Make sure your grades comply with above before using this calculator.</li>
+                    <li>Final qualification is subject to <strong>Registrar & University policies</strong>.</li>
+                </ul>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p class="footer-text">Developed by <a href="https://www.instagram.com/kazee_1029/" target="_blank" rel="noopener noreferrer" class="footer-link"><strong>IG: kazee_1029</strong></a></p>
+            <p class="footer-subtitle">Frontend Website Developer</p>
+            <p class="footer-tagline">Built for the SorSU Students</p>
+        </footer>
+    </div>
+
+    <script src="goal-planner.js"></script>
+</body>
+</html>

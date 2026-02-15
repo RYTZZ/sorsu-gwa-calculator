@@ -1,11 +1,33 @@
 let subjectCount = 1;
-const maxSubjects = 8;
+const maxSubjects = 10;
+
+let pendingSubjectAdd = false;
 
 function addSubject() {
     if (subjectCount >= maxSubjects) {
         return;
     }
 
+    // Show confirmation for 9th and 10th subject
+    if (subjectCount === 8) {
+        showConfirmation(
+            'Adding 9th Subject',
+            'You are about to add your 9th subject.\n\nMaximum is 10 subjects.\n\nAre you sure you want to continue?'
+        );
+        return;
+    } else if (subjectCount === 9) {
+        showConfirmation(
+            'Adding 10th Subject (Final)',
+            'You are about to add your 10th and FINAL subject.\n\nThis is the maximum number of subjects allowed.\n\nAre you sure you want to continue?'
+        );
+        return;
+    }
+
+    // Add subject directly if not 9th or 10th
+    addSubjectField();
+}
+
+function addSubjectField() {
     subjectCount++;
     
     const gradesContainer = document.getElementById('gradesContainer');
@@ -20,6 +42,52 @@ function addSubject() {
     
     gradesContainer.appendChild(gradeWrapper);
     updateUI();
+}
+
+function showConfirmation(title, message) {
+    document.getElementById('confirmTitle').textContent = title;
+    document.getElementById('confirmMessage').textContent = message;
+    document.getElementById('confirmationModal').classList.add('show');
+    document.body.style.overflow = 'hidden';
+    pendingSubjectAdd = true;
+}
+
+function proceedAddSubject() {
+    document.getElementById('confirmationModal').classList.remove('show');
+    document.body.style.overflow = '';
+    if (pendingSubjectAdd) {
+        addSubjectField();
+        pendingSubjectAdd = false;
+    }
+}
+
+function cancelAddSubject() {
+    document.getElementById('confirmationModal').classList.remove('show');
+    document.body.style.overflow = '';
+    pendingSubjectAdd = false;
+}
+
+function showNotification(message) {
+    // Create notification element
+    const notification = document.createElement('div');
+    notification.className = 'subject-notification';
+    notification.textContent = message;
+    
+    // Add to body
+    document.body.appendChild(notification);
+    
+    // Show notification
+    setTimeout(() => {
+        notification.classList.add('show');
+    }, 10);
+    
+    // Hide and remove after 4 seconds
+    setTimeout(() => {
+        notification.classList.remove('show');
+        setTimeout(() => {
+            notification.remove();
+        }, 300);
+    }, 4000);
 }
 
 function removeGrade(button) {
@@ -103,59 +171,68 @@ function calculateGWA() {
     const totalWeightedGrades = subjects.reduce((sum, subject) => sum + (subject.grade * subject.units), 0);
     const totalUnits = subjects.reduce((sum, subject) => sum + subject.units, 0);
     
-    const gwa = totalWeightedGrades / totalUnits;
-    
-    const gwaForHonors = Math.round(gwa * 10000) / 10000;
-    const gwaDisplay = Math.floor(gwa * 1000) / 1000;
+    const rawGWA = totalWeightedGrades / totalUnits;
     
     const semester = document.querySelector('input[name="semester"]:checked').value;
     const status = document.querySelector('input[name="status"]:checked').value;
     const campus = document.getElementById('campusSelect').value;
     
     const grades = subjects.map(s => s.grade);
-    const honor = determineHonor(gwaForHonors, status, grades);
     
-    displayResult(campus, semester, gwaDisplay, honor);
+    let officialGWA, displayGWA, honor;
+    
+    if (status === 'non-graduating') {
+        officialGWA = Math.round(rawGWA * 100) / 100;
+        displayGWA = officialGWA.toFixed(2);
+        honor = determineNonGraduatingHonor(officialGWA, grades);
+    } else {
+        const rounded4 = Math.round(rawGWA * 10000) / 10000;
+        officialGWA = Math.floor(rounded4 * 1000) / 1000;
+        displayGWA = officialGWA.toFixed(3);
+        honor = determineGraduatingHonor(officialGWA, grades);
+    }
+    
+    displayResult(campus, semester, displayGWA, honor);
 }
 
-function determineHonor(gwa, status, grades) {
-    if (status === 'non-graduating') {
-        const hasDisqualifyingGrade = grades.some(grade => grade > 2.2);
-        
-        if (hasDisqualifyingGrade) {
-            return 'Disqualified';
-        }
-        
-        if (gwa >= 1.00 && gwa <= 1.50) {
-            return "President's Lister";
-        } else if (gwa >= 1.51 && gwa <= 1.75) {
-            return "Dean's Lister";
-        } else {
-            return 'No Academic Honor';
-        }
+function determineNonGraduatingHonor(gwa, grades) {
+    const hasDisqualifyingGrade = grades.some(grade => grade > 2.2);
+    
+    if (hasDisqualifyingGrade) {
+        return 'Disqualified';
+    }
+    
+    if (gwa >= 1.00 && gwa <= 1.50) {
+        return "President's Lister";
+    } else if (gwa >= 1.51 && gwa <= 1.75) {
+        return "Dean's Lister";
     } else {
-        const hasDisqualifyingGrade = grades.some(grade => grade > 2.2);
-        
-        if (hasDisqualifyingGrade) {
-            return 'No Latin Honor';
-        }
-        
-        if (gwa >= 1.00 && gwa <= 1.20) {
-            return 'Summa Cum Laude';
-        } else if (gwa >= 1.21 && gwa <= 1.50) {
-            return 'Magna Cum Laude';
-        } else if (gwa >= 1.51 && gwa <= 1.75) {
-            return 'Cum Laude';
-        } else {
-            return 'No Latin Honor';
-        }
+        return 'No Academic Honor';
+    }
+}
+
+function determineGraduatingHonor(gwa, grades) {
+    const hasDisqualifyingGrade = grades.some(grade => grade > 2.2);
+    
+    if (hasDisqualifyingGrade) {
+        return 'No Latin Honor';
+    }
+    
+    if (gwa >= 1.00 && gwa <= 1.20) {
+        return 'Summa Cum Laude';
+    } else if (gwa >= 1.21 && gwa <= 1.50) {
+        return 'Magna Cum Laude';
+    } else if (gwa >= 1.51 && gwa <= 1.75) {
+        return 'Cum Laude';
+    } else {
+        return 'No Latin Honor';
     }
 }
 
 function displayResult(campus, semester, gwa, honor) {
     document.getElementById('resultCampus').textContent = campus;
     document.getElementById('resultSemester').textContent = semester;
-    document.getElementById('resultGWA').textContent = gwa.toFixed(3);
+    document.getElementById('resultGWA').textContent = gwa;
     document.getElementById('resultHonor').textContent = honor;
     
     const modal = document.getElementById('resultModal');

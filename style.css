@@ -46,12 +46,13 @@ body {
 .navbar {
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 15px;
     background: var(--white);
-    padding: 15px 30px;
+    padding: 15px 20px;
     border-radius: 12px;
     margin-bottom: 20px;
     box-shadow: 0 4px 12px var(--shadow);
+    flex-wrap: wrap;
 }
 
 .nav-link {
@@ -60,9 +61,10 @@ body {
     font-weight: 500;
     color: var(--gray-medium);
     text-decoration: none;
-    padding: 10px 24px;
+    padding: 10px 20px;
     border-radius: 8px;
     transition: all 0.3s ease;
+    white-space: nowrap;
 }
 
 .nav-link:hover {
@@ -135,15 +137,26 @@ body {
 
 .university-name {
     font-family: 'Montserrat', sans-serif;
-    font-size: 1rem;
+    font-size: 2.8rem;
     font-weight: 800;
     color: var(--white);
     letter-spacing: 2px;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
     position: relative;
     z-index: 1;
     animation: slideDown 0.8s ease-out 0.3s backwards;
+}
+
+.header-subtitle {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.9);
+    font-style: italic;
+    margin-bottom: 8px;
+    position: relative;
+    z-index: 1;
 }
 
 .page-title {
@@ -423,6 +436,144 @@ body {
     border-radius: 4px;
 }
 
+.subject-notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, var(--maroon-primary) 0%, var(--maroon-dark) 100%);
+    color: var(--white);
+    padding: 15px 25px;
+    border-radius: 10px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    box-shadow: 0 8px 24px rgba(128, 0, 32, 0.4);
+    z-index: 9999;
+    opacity: 0;
+    transform: translateX(400px);
+    transition: all 0.3s ease;
+    max-width: 350px;
+}
+
+.subject-notification.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.confirmation-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10000;
+    animation: modalFadeIn 0.3s ease-out;
+}
+
+.confirmation-modal.show {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.confirmation-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+}
+
+.confirmation-card {
+    position: relative;
+    z-index: 10001;
+    background: var(--white);
+    padding: 35px 30px;
+    border-radius: 20px;
+    max-width: 450px;
+    width: 90%;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    animation: modalSlideUp 0.4s ease-out;
+}
+
+.confirmation-icon {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    animation: bounceIn 0.6s ease-out;
+}
+
+@keyframes bounceIn {
+    0% {
+        transform: scale(0);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.confirmation-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--maroon-primary);
+    margin-bottom: 15px;
+}
+
+.confirmation-message {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.95rem;
+    color: var(--gray-dark);
+    line-height: 1.6;
+    margin-bottom: 25px;
+    white-space: pre-line;
+}
+
+.confirmation-buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+}
+
+.confirm-btn {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 12px 28px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.cancel-btn {
+    background: var(--gray-light);
+    color: var(--gray-dark);
+}
+
+.cancel-btn:hover {
+    background: var(--gray-medium);
+    color: var(--white);
+    transform: translateY(-2px);
+}
+
+.proceed-btn {
+    background: linear-gradient(135deg, var(--maroon-primary) 0%, var(--maroon-dark) 100%);
+    color: var(--white);
+    box-shadow: 0 4px 12px rgba(128, 0, 32, 0.3);
+}
+
+.proceed-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(128, 0, 32, 0.4);
+}
+
 .calculate-btn {
     padding: 16px 40px;
     border: none;
@@ -557,7 +708,7 @@ body {
 
 .result-university {
     font-family: 'Montserrat', sans-serif;
-    font-size: 1rem;
+    font-size: 1.2rem;
     font-weight: 800;
     color: var(--maroon-primary);
     letter-spacing: 1px;
@@ -702,6 +853,14 @@ body {
     font-weight: 300;
 }
 
+.footer-tagline {
+    font-size: 0.9rem;
+    color: var(--white);
+    font-weight: 500;
+    margin-top: 8px;
+    font-style: italic;
+}
+
 .footer-link {
     color: var(--white);
     text-decoration: none;
@@ -834,6 +993,245 @@ body {
     font-style: italic;
 }
 
+.reference-note {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9rem;
+    color: var(--gray-medium);
+    text-align: center;
+    margin-top: 30px;
+    font-style: italic;
+}
+
+.section-heading {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--maroon-primary);
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.section-description {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.95rem;
+    color: var(--gray-medium);
+    text-align: center;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.calculation-formula {
+    background: linear-gradient(135deg, rgba(128, 0, 32, 0.05) 0%, rgba(128, 0, 32, 0.02) 100%);
+    border-left: 4px solid var(--maroon-primary);
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+}
+
+.formula-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--maroon-primary);
+    margin-bottom: 10px;
+}
+
+.formula-text {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--gray-dark);
+    text-align: center;
+    margin: 0;
+}
+
+.important-notes {
+    background: var(--white);
+    border: 2px solid var(--maroon-primary);
+    border-radius: 12px;
+    padding: 25px 30px;
+    margin-top: 40px;
+    box-shadow: 0 4px 12px var(--shadow);
+}
+
+.notes-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--maroon-primary);
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.notes-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.notes-list li {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.95rem;
+    color: var(--gray-dark);
+    padding: 10px 0;
+    line-height: 1.6;
+    position: relative;
+    padding-left: 25px;
+}
+
+.notes-list li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--maroon-primary);
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.notes-list li strong {
+    color: var(--maroon-primary);
+    font-weight: 600;
+}
+
+.goal-input,
+.goal-select {
+    width: 100%;
+    padding: 14px 18px;
+    border: 2px solid var(--gray-light);
+    border-radius: 10px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.95rem;
+    color: var(--gray-dark);
+    background: var(--white);
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+.goal-input::-webkit-inner-spin-button,
+.goal-input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.goal-input[type=number],
+.goal-select {
+    appearance: textfield;
+    -moz-appearance: textfield;
+}
+
+.goal-input:focus,
+.goal-select:focus {
+    border-color: var(--maroon-primary);
+    box-shadow: 0 0 0 3px rgba(128, 0, 32, 0.1);
+}
+
+.goal-select {
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23800020' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    padding-right: 45px;
+}
+
+.result-section {
+    margin-top: 40px;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.goal-result-card {
+    background: var(--white);
+    border: 2px solid var(--maroon-primary);
+    border-radius: 16px;
+    padding: 35px 30px;
+    box-shadow: 0 8px 30px var(--shadow);
+}
+
+.result-heading {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--maroon-primary);
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.goal-details {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.goal-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 20px;
+    background: var(--gray-bg);
+    border-radius: 8px;
+}
+
+.highlight-row {
+    background: rgba(128, 0, 32, 0.05);
+    border: 2px solid var(--maroon-primary);
+}
+
+.goal-label {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--gray-medium);
+}
+
+.goal-value {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--gray-dark);
+}
+
+.required-gwa {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--maroon-primary);
+}
+
+.goal-status {
+    text-align: center;
+    padding: 20px;
+    border-radius: 12px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.goal-status.achievable {
+    background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+    color: var(--white);
+}
+
+.goal-status.challenging {
+    background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+    color: var(--white);
+}
+
+.goal-status.impossible {
+    background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+    color: var(--white);
+}
+
+.goal-message {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.95rem;
+    color: var(--gray-dark);
+    text-align: center;
+    line-height: 1.6;
+}
+
 /* Desktop (Large screens: 1200px and above) */
 @media (min-width: 1200px) {
     .container {
@@ -871,7 +1269,7 @@ body {
     }
 
     .result-university {
-        font-size: 1.3rem;
+        font-size: 1.2rem;
     }
 
     .result-title {
@@ -895,7 +1293,7 @@ body {
     }
 
     .university-name {
-        font-size: 1rem;
+        font-size: 1.8rem;
     }
 
     .page-title {
@@ -923,7 +1321,7 @@ body {
     }
 
     .university-name {
-        font-size: 1rem;
+        font-size: 1.6rem;
         letter-spacing: 1.5px;
     }
 
@@ -940,7 +1338,7 @@ body {
     }
 
     .result-university {
-        font-size: 1rem;
+        font-size: 1.2rem;
     }
 
     .result-title {
@@ -962,6 +1360,16 @@ body {
         max-width: 100%;
     }
 
+    .navbar {
+        gap: 10px;
+        padding: 12px 15px;
+    }
+
+    .nav-link {
+        font-size: 0.8rem;
+        padding: 8px 15px;
+    }
+
     .header {
         padding: 35px 25px;
         border-radius: 16px;
@@ -973,7 +1381,7 @@ body {
     }
 
     .university-name {
-        font-size: 1rem;
+        font-size: 1.2rem;
         letter-spacing: 1.2px;
     }
 
@@ -1001,7 +1409,7 @@ body {
     }
 
     .result-university {
-        font-size: 1rem;
+        font-size: 1.2rem;
         letter-spacing: 1.2px;
     }
 
@@ -1025,6 +1433,18 @@ body {
     .footer {
         padding: 25px;
     }
+
+    .formula-text {
+        font-size: 0.95rem;
+    }
+
+    .important-notes {
+        padding: 20px 25px;
+    }
+
+    .notes-list li {
+        font-size: 0.9rem;
+    }
 }
 
 /* Mobile Small (320px - 480px) */
@@ -1035,6 +1455,17 @@ body {
 
     .container {
         max-width: 100%;
+    }
+
+    .navbar {
+        gap: 8px;
+        padding: 10px 12px;
+        margin-bottom: 15px;
+    }
+
+    .nav-link {
+        font-size: 0.75rem;
+        padding: 8px 12px;
     }
 
     .header {
@@ -1049,7 +1480,7 @@ body {
     }
 
     .university-name {
-        font-size: 1.1rem;
+        font-size: 1.2rem;
         letter-spacing: 0.8px;
     }
 
@@ -1131,7 +1562,7 @@ body {
     }
 
     .result-university {
-        font-size: 0.9rem;
+        font-size: 1.2rem;
         letter-spacing: 1px;
         margin-bottom: 6px;
     }
@@ -1193,12 +1624,119 @@ body {
     .footer-subtitle {
         font-size: 0.75rem;
     }
+
+    .section-heading {
+        font-size: 1.1rem;
+    }
+
+    .section-description {
+        font-size: 0.85rem;
+    }
+
+    .calculation-formula {
+        padding: 15px;
+    }
+
+    .formula-title {
+        font-size: 0.9rem;
+    }
+
+    .formula-text {
+        font-size: 0.85rem;
+    }
+
+    .important-notes {
+        padding: 18px 20px;
+        margin-top: 30px;
+    }
+
+    .notes-title {
+        font-size: 1rem;
+    }
+
+    .notes-list li {
+        font-size: 0.85rem;
+        padding: 8px 0;
+        padding-left: 20px;
+    }
+
+    .goal-result-card {
+        padding: 25px 20px;
+    }
+
+    .result-heading {
+        font-size: 1.2rem;
+    }
+
+    .goal-row {
+        padding: 10px 15px;
+        flex-direction: column;
+        gap: 5px;
+        text-align: center;
+    }
+
+    .goal-label {
+        font-size: 0.85rem;
+    }
+
+    .goal-value {
+        font-size: 0.9rem;
+    }
+
+    .required-gwa {
+        font-size: 1.3rem;
+    }
+
+    .goal-status {
+        font-size: 1rem;
+        padding: 15px;
+    }
+
+    .goal-message {
+        font-size: 0.85rem;
+    }
+
+    .subject-notification {
+        top: 10px;
+        right: 10px;
+        left: 10px;
+        max-width: calc(100% - 20px);
+        padding: 12px 18px;
+        font-size: 0.85rem;
+    }
+
+    .confirmation-card {
+        padding: 30px 25px;
+        width: 95%;
+    }
+
+    .confirmation-icon {
+        font-size: 2.5rem;
+    }
+
+    .confirmation-title {
+        font-size: 1.1rem;
+    }
+
+    .confirmation-message {
+        font-size: 0.9rem;
+    }
+
+    .confirmation-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .confirm-btn {
+        width: 100%;
+        padding: 14px 24px;
+    }
 }
 
 /* Extra Small Mobile (below 360px) */
 @media (max-width: 359px) {
     .university-name {
-        font-size: 0.85rem;
+        font-size: 1.3rem;
     }
 
     .page-title {
@@ -1206,7 +1744,7 @@ body {
     }
 
     .result-university {
-        font-size: 0.85rem;
+        font-size: 1.6rem;
     }
 
     .result-title {
