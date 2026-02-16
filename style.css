@@ -861,6 +861,18 @@ body {
     font-style: italic;
 }
 
+.footer-disclaimer {
+    font-size: 0.9rem;
+    color: #ffffff;              /* Yellow text */
+    font-weight: 600;             /* Semi-bold */
+    margin-bottom: 12px;
+    padding: 8px 12px;
+    background: rgba(0, 0, 0, 0.1);  /* Light yellow background */
+    border-radius: 6px;
+    position: relative;
+    z-index: 1;
+}
+
 .footer-link {
     color: var(--white);
     text-decoration: none;
